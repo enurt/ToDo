@@ -21,7 +21,7 @@
     "autoload": {
         "psr-4": {
             "Application\\": "module/Application/src/",
-            "Album\\": "module/Todo/src/"
+            "Todo\\": "module/Todo/src/"
         }
     },
     "autoload-dev": {

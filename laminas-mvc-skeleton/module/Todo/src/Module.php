@@ -13,6 +13,20 @@ class Module implements ConfigProviderInterface
         return include __DIR__ . '/../config/module.config.php';
     }
 
+
+    public function getControllerConfig()
+    {
+        return [
+            'factories' => [
+                Controller\TodoController::class => function($container) {
+                    return new Controller\TodoController(
+                        $container->get(Controller\TodoTable::class)
+                    );
+                },
+            ],
+        ];
+    }
+
     public function getServiceConfig()
     {
         return [
@@ -26,19 +40,6 @@ class Module implements ConfigProviderInterface
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype(new Model\Todo());
                     return new TableGateway('todo', $dbAdapter, null, $resultSetPrototype);
-                },
-            ],
-        ];
-    }
-
-    public function getControllerConfig()
-    {
-        return [
-            'factories' => [
-                Controller\TodoController::class => function($container) {
-                    return new Controller\TodoController(
-                        $container->get(Model\TodoTable::class)
-                    );
                 },
             ],
         ];

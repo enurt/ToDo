@@ -1,27 +1,27 @@
 <?php
 // module/Album/view/album/album/index.phtml:
 
-$title = 'My albums';
+$title = 'My To Do List';
 $this->headTitle($title);
 ?>
 <h1><?= $this->escapeHtml($title) ?></h1>
 <p>
-    <a href="<?= $this->url('album', ['action' => 'add']) ?>">Add new album</a>
+    <a href="<?= $this->url('todo', ['action' => 'add']) ?>">Add new to do list</a>
 </p>
 
 <table class="table">
 <tr>
-    <th>Title</th>
-    <th>Artist</th>
+    <th>To Do List</th>
+    
     <th>&nbsp;</th>
 </tr>
-<?php foreach ($albums as $album) : ?>
+<?php foreach ($todo as $todo) : ?>
     <tr>
-        <td><?= $this->escapeHtml($album->title) ?></td>
-        <td><?= $this->escapeHtml($album->artist) ?></td>
+        <td><?= $this->escapeHtml($todo->title) ?></td>
+       
         <td>
-            <a href="<?= $this->url('album', ['action' => 'edit', 'id' => $album->id]) ?>">Edit</a>
-            <a href="<?= $this->url('album', ['action' => 'delete', 'id' => $album->id]) ?>">Delete</a>
+            <a href="<?= $this->url('todo', ['action' => 'edit', 'id' => $todo->id]) ?>">Edit</a>
+            <a href="<?= $this->url('todo', ['action' => 'delete', 'id' => $todo->id]) ?>">Delete</a>
         </td>
     </tr>
 <?php endforeach; ?>

@@ -9,8 +9,8 @@ class Todo
 
     public function exchangeArray(array $data)
     {
-        $this->id     = !empty($data['id']) : null;
-        $this->To_Do_List = !empty($data['To_Do_List']) : null;
+        $this->id     = !empty($data['id']) ? $data['id'] : null;
+        $this->To_Do_List = !empty($data['To_Do_List']) ? $data['id'] : null;
     }
 }
 
