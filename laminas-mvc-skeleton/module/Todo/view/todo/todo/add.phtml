@@ -1,0 +1,33 @@
+<?php
+// module/Album/view/album/album/add.phtml:
+
+$title = 'Add new to do list';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<?php
+$todo = $form->get('To_Do_List');
+$todo->setAttribute('class', 'form-control');
+$todo->setAttribute('placeholder', 'To do list');
+
+// This provides CSS classes for the submit button:
+$submit = $form->get('submit');
+$submit->setAttribute('class', 'btn btn-primary');
+
+$form->setAttribute('action', $this->url('todo', ['action' => 'add']));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+?>
+<?php ?>
+<div class="form-group">
+    <?= $this->formLabel($todo) ?>
+    <?= $this->formElement($todo) ?>
+    <?= $this->formElementErrors()->render($todo, ['class' => 'help-block']) ?>
+</div>
+<?php
+echo $this->formHidden($form->get('id'));
+//echo $this->formRow($form->get('To_Do_List'));
+echo $this->formSubmit($form->get('submit'));
+echo $this->form()->closeTag();
+?>

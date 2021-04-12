@@ -14,19 +14,6 @@ class Module implements ConfigProviderInterface
     }
 
 
-    public function getControllerConfig()
-    {
-        return [
-            'factories' => [
-                Controller\TodoController::class => function($container) {
-                    return new Controller\TodoController(
-                        $container->get(Controller\TodoTable::class)
-                    );
-                },
-            ],
-        ];
-    }
-
     public function getServiceConfig()
     {
         return [
@@ -39,7 +26,20 @@ class Module implements ConfigProviderInterface
                     $dbAdapter = $container->get(AdapterInterface::class);
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype(new Model\Todo());
-                    return new TableGateway('todo', $dbAdapter, null, $resultSetPrototype);
+                    return new TableGateway('todolist', $dbAdapter, null, $resultSetPrototype);
+                },
+            ],
+        ];
+    }
+
+    public function getControllerConfig()
+    {
+        return [
+            'factories' => [
+                Controller\TodoController::class => function($container) {
+                    return new Controller\TodoController(
+                        $container->get(Model\TodoTable::class)
+                    );
                 },
             ],
         ];
