@@ -14,6 +14,7 @@ class Todo implements InputFilterAwareInterface
 {
     public $id;
     public $To_Do_List;
+    public $status;
     
     private $inputFilter;
 
@@ -21,6 +22,7 @@ class Todo implements InputFilterAwareInterface
     {
         $this->id = !empty($data['id']) ? $data['id'] : null;
         $this->To_Do_List = !empty($data['To_Do_List']) ? $data['To_Do_List'] : null;
+        $this->status = !empty($data['status']) ? $data['status'] : null;
     }
 
     public function getArrayCopy()
@@ -28,6 +30,7 @@ class Todo implements InputFilterAwareInterface
         return [
             'id'     => $this->id,
             'To_Do_List' => $this->To_Do_List,
+            'status' => $this->status,
             
         ];
     }
@@ -76,7 +79,7 @@ class Todo implements InputFilterAwareInterface
         ]);
 
         // $inputFilter->add([
-        //     'name' => 'title',
+        //     'name' => 'status',
         //     'required' => true,
         //     'filters' => [
         //         ['name' => StripTags::class],

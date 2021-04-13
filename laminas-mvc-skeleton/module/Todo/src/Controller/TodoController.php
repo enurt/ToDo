@@ -49,7 +49,7 @@ class TodoController extends AbstractActionController
 
     public function updateAction()
     {
-         $id = (int) $this->params()->fromRoute('id', 0);
+        $id = (int) $this->params()->fromRoute('id', 0);
 
         if (0 === $id) {
             return $this->redirect()->toRoute('todo', ['action' => 'add']);

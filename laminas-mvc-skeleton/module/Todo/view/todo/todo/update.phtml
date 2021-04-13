@@ -1,7 +1,7 @@
 <?php
 // module/Album/view/album/album/edit.phtml:
 
-$title = 'Update album';
+$title = 'Update to do list';
 $this->headTitle($title);
 ?>
 <h1><?= $this->escapeHtml($title) ?></h1>
@@ -17,6 +17,7 @@ $submit->setAttribute('class', 'btn btn-primary');
 $form->setAttribute('action', $this->url('todo', [
     'action' => 'Update',
     'id'     => $id,
+    
 ]));
 $form->prepare();
 
@@ -27,6 +28,7 @@ echo $this->form()->openTag($form);
     <?= $this->formElement($todo) ?>
     <?= $this->formElementErrors()->render($todo, ['class' => 'help-block']) ?>
 </div>
+
 
 <?php
 echo $this->formSubmit($submit);

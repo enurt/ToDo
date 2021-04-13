@@ -12,11 +12,14 @@ $this->headTitle($title);
 <table class="table">
 <tr>
     <th>To Do List</th>
+    <th>Status</th>
     <th>&nbsp;</th>
 </tr>
 <?php foreach ($todolists as $todo) : ?>
+
     <tr>
         <td><?= $this->escapeHtml($todo->To_Do_List) ?></td>
+        <td><?= $this->escapeHtml($todo->status) ?></td>
        
         <td>
             <a href="<?= $this->url('todo', ['action' => 'update', 'id' => $todo->id]) ?>">Update</a>

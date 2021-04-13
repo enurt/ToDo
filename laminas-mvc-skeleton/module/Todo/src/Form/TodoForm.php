@@ -23,6 +23,14 @@ class TodoForm extends Form
         ]);
 
         $this->add([
+            'name' => 'status',
+            'type' => 'text',
+            'options' => [
+                'label' => 'todolist',
+            ],
+        ]);
+
+        $this->add([
             'name' => 'submit',
             'type' => 'submit',
             'attributes' => [
