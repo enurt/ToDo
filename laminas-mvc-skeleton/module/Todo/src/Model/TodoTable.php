@@ -36,7 +36,7 @@ class TodoTable
     public function saveTodo(Todo $To_Do_List)
     {
         $data = [
-            'todolist' => $To_Do_List->To_Do_List,
+            'To_Do_List' => $To_Do_List->To_Do_List,
            
         ];
 

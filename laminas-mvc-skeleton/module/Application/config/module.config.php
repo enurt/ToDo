@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace Application;
 
+use Todo\Controller\TodoController;
 use Laminas\Router\Http\Literal;
 use Laminas\Router\Http\Segment;
 use Laminas\ServiceManager\Factory\InvokableFactory;
@@ -18,11 +19,11 @@ return [
     'router' => [
         'routes' => [
             'home' => [
-                'type'    => Literal::class,
+                'type'    => \Laminas\Router\Http\Literal::class,
                 'options' => [
                     'route'    => '/',
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
+                        'controller' => TodoController::class,
                         'action'     => 'index',
                     ],
                 ],

@@ -19,7 +19,7 @@ class TodoController extends AbstractActionController
     public function indexAction()
     {
         return new ViewModel([
-            'todolist' => $this->table->fetchAll(),
+            'todolists' => $this->table->fetchAll(),
         ]);
     }
 
@@ -49,10 +49,72 @@ class TodoController extends AbstractActionController
 
     public function updateAction()
     {
+         $id = (int) $this->params()->fromRoute('id', 0);
+
+        if (0 === $id) {
+            return $this->redirect()->toRoute('todo', ['action' => 'add']);
+        }
+
+        // Retrieve the album with the specified id. Doing so raises
+        // an exception if the album is not found, which should result
+        // in redirecting to the landing page.
+        try {
+            $todo = $this->table->getTodo($id);
+        } catch (\Exception $e) {
+            return $this->redirect()->toRoute('todo', ['action' => 'index']);
+        }
+
+        $form = new TodoForm();
+        $form->bind($todo);
+        $form->get('submit')->setAttribute('value', 'Update');
+
+        $request = $this->getRequest();
+        $viewData = ['id' => $id, 'form' => $form];
+
+        if (! $request->isPost()) {
+            return $viewData;
+        }
+
+        $form->setInputFilter($todo->getInputFilter());
+        $form->setData($request->getPost());
+
+        if (! $form->isValid()) {
+            return $viewData;
+        }
+
+        try {
+            $this->table->saveTodo($todo);
+        } catch (\Exception $e) {
+        }
+
+        // Redirect to album list
+        return $this->redirect()->toRoute('todo', ['action' => 'index']);
     }
 
     public function deleteAction()
     {
+        $id = (int) $this->params()->fromRoute('id', 0);
+        if (!$id) {
+            return $this->redirect()->toRoute('todo');
+        }
+
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $del = $request->getPost('del', 'No');
+
+            if ($del == 'Yes') {
+                $id = (int) $request->getPost('id');
+                $this->table->deleteTodo($id);
+            }
+
+            // Redirect to list of albums
+            return $this->redirect()->toRoute('todo');
+        }
+
+        return [
+            'id'    => $id,
+            'todo' => $this->table->getTodo($id),
+        ];
     }
 }
  ?>

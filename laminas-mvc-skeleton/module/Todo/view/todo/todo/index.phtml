@@ -14,13 +14,13 @@ $this->headTitle($title);
     <th>To Do List</th>
     <th>&nbsp;</th>
 </tr>
-<?php foreach ($todoList as $todo) : ?>
+<?php foreach ($todolists as $todo) : ?>
     <tr>
         <td><?= $this->escapeHtml($todo->To_Do_List) ?></td>
        
         <td>
-            <a href="<?= $this->url('todo', ['actionList' => 'update', 'id' => $todo->id]) ?>">Edit</a>
-            <a href="<?= $this->url('todo', ['actionList' => 'delete', 'id' => $todo->id]) ?>">Delete</a>
+            <a href="<?= $this->url('todo', ['action' => 'update', 'id' => $todo->id]) ?>">Update</a>
+            <a href="<?= $this->url('todo', ['action' => 'delete', 'id' => $todo->id]) ?>">Delete</a>
         </td>
     </tr>
 <?php endforeach; ?>

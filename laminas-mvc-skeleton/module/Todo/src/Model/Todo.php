@@ -23,6 +23,15 @@ class Todo implements InputFilterAwareInterface
         $this->To_Do_List = !empty($data['To_Do_List']) ? $data['To_Do_List'] : null;
     }
 
+    public function getArrayCopy()
+    {
+        return [
+            'id'     => $this->id,
+            'To_Do_List' => $this->To_Do_List,
+            
+        ];
+    }
+
         public function setInputFilter(InputFilterInterface $inputFilter)
     {
         throw new DomainException(sprintf(
