@@ -1,0 +1,27 @@
+<?php
+// module/Album/view/album/album/index.phtml:
+
+$title = 'My To Do List';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<p>
+    <a href="<?= $this->url('todo', ['action' => 'add']) ?>">Add new to do list</a>
+</p>
+
+<table class="table">
+<tr>
+    <th>To Do List</th>
+    <th>&nbsp;</th>
+</tr>
+<?php foreach ($todolists as $todo) : ?>
+    <tr>
+        <td><?= $this->escapeHtml($todo->To_Do_List) ?></td>
+       
+        <td>
+            <a href="<?= $this->url('todo', ['action' => 'update', 'id' => $todo->id]) ?>">Update</a>
+            <a href="<?= $this->url('todo', ['action' => 'delete', 'id' => $todo->id]) ?>">Delete</a>
+        </td>
+    </tr>
+<?php endforeach; ?>
+</table>
