@@ -1,3 +1,2 @@
-alter table todolist add column status varchar default 'new';
-INSERT INTO todolist (status) VALUES ('new');
-SELECT * FROM todolist;
+alter table todolist add column status varchar(250) default 'new';
+-- INSERT INTO todolist (status) VALUES ('new');

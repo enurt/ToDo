@@ -37,7 +37,7 @@ class TodoTable
     {
         $data = [
             'To_Do_List' => $To_Do_List->To_Do_List,
-            'status' => $To_Do_List->To_Do_List,
+            //'status' => $status->status,
         ];
 
         $id = (int) $To_Do_List->id;
@@ -59,31 +59,6 @@ class TodoTable
         $this->tableGateway->update($data, ['id' => $id]);
     }
 
-    // public function saveTodo(Todo $status)
-    // {
-    //     $data = [
-    //         'To_Do_List' => $To_Do_List->To_Do_List,
-           
-    //     ];
-
-    //     $id = (int) $To_Do_List->id;
-
-    //     if ($id === 0) {
-    //         $this->tableGateway->insert($data);
-    //         return;
-    //     }
-
-    //     try {
-    //         $this->getTodo($id);
-    //     } catch (RuntimeException $e) {
-    //         throw new RuntimeException(sprintf(
-    //             'Cannot update to do list with identifier %d; does not exist',
-    //             $id
-    //         ));
-    //     }
-
-    //     $this->tableGateway->update($data, ['id' => $id]);
-    // }
 
     public function deleteTodo($id)
     {
