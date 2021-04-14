@@ -78,6 +78,24 @@ class Todo implements InputFilterAwareInterface
             ],
         ]);
 
+        // $inputFilter->add([
+        //     'name' => 'status',
+        //     'required' => true,
+        //     'filters' => [
+        //         ['name' => StripTags::class],
+        //         ['name' => StringTrim::class],
+        //     ],
+        //     'validators' => [
+        //         [
+        //             'name' => StringLength::class,
+        //             'options' => [
+        //                 'encoding' => 'UTF-8',
+        //                 'min' => 1,
+        //                 'max' => 100,
+        //             ],
+        //         ],
+        //     ],
+        // ]);
 
 
         $this->inputFilter = $inputFilter;

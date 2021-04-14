@@ -24,6 +24,7 @@ $this->headTitle($title);
         <td>
             <a href="<?= $this->url('todo', ['action' => 'update', 'id' => $todo->id]) ?>">Update</a>
             <a href="<?= $this->url('todo', ['action' => 'delete', 'id' => $todo->id]) ?>">Delete</a>
+            <a href="<?= $this->url('todo', ['action' => 'done', 'id' => $todo->id]) ?>">Done</a>
         </td>
     </tr>
 <?php endforeach; ?>

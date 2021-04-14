@@ -37,7 +37,7 @@ class TodoTable
     {
         $data = [
             'To_Do_List' => $To_Do_List->To_Do_List,
-            //'status' => $status->status,
+            'status' => $To_Do_List->status,
         ];
 
         $id = (int) $To_Do_List->id;

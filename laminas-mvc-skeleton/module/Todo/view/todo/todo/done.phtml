@@ -1,0 +1,36 @@
+<?php
+
+$title = 'Mark this task as done';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<?php
+$todo = $form->get('status');
+$todo->setAttribute('class', 'form-control');
+$todo->setAttribute('placeholder', 'Change the status');
+
+
+$submit = $form->get('submit');
+$submit->setAttribute('class', 'btn btn-primary');
+
+$form->setAttribute('action', $this->url('todo', [
+    'action' => 'Done',
+    'id'     => $id,
+  
+]));
+
+$form->prepare();
+
+echo $this->form()->openTag($form);
+?>
+<div class="form-group">
+    <?= $this->formLabel($todo) ?>
+    <?= $this->formElement($todo) ?>
+    <?= $this->formElementErrors()->render($todo, ['class' => 'help-block']) ?>
+</div>
+
+
+<?php
+echo $this->formSubmit($submit);
+echo $this->formHidden($form->get('id'));
+echo $this->form()->closeTag();

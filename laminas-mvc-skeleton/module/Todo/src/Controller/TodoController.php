@@ -117,48 +117,48 @@ class TodoController extends AbstractActionController
         ];
     }
 
-    //  public function doneAction()
-    // {
-    //     $id = (int) $this->params()->fromRoute('id', 0);
+    public function doneAction()
+    {
+        $id = (int) $this->params()->fromRoute('id', 0);
 
-    //     if (0 === $id) {
-    //         return $this->redirect()->toRoute('todo', ['action' => 'add']);
-    //     }
+        if (0 === $id) {
+            return $this->redirect()->toRoute('todo', ['action' => 'add']);
+        }
 
-    //     // Retrieve the album with the specified id. Doing so raises
-    //     // an exception if the album is not found, which should result
-    //     // in redirecting to the landing page.
-    //     try {
-    //         $todo = $this->table->getTodo($id);
-    //     } catch (\Exception $e) {
-    //         return $this->redirect()->toRoute('todo', ['action' => 'index']);
-    //     }
+        // Retrieve the album with the specified id. Doing so raises
+        // an exception if the album is not found, which should result
+        // in redirecting to the landing page.
+        try {
+            $todo = $this->table->getTodo($id);
+        } catch (\Exception $e) {
+            return $this->redirect()->toRoute('todo', ['action' => 'index']);
+        }
 
-    //     $form = new TodoForm();
-    //     $form->bind($todo);
-    //     $form->get('submit')->setAttribute('value', 'Done');
+        $form = new TodoForm();
+        $form->bind($todo);
+        $form->get('submit')->setAttribute('value', 'Done');
 
-    //     $request = $this->getRequest();
-    //     $viewData = ['id' => $id, 'form' => $form];
+        $request = $this->getRequest();
+        $viewData = ['id' => $id, 'form' => $form];
 
-    //     if (! $request->isPost()) {
-    //         return $viewData;
-    //     }
+        if (! $request->isPost()) {
+            return $viewData;
+        }
 
-    //     $form->setInputFilter($todo->getInputFilter());
-    //     $form->setData($request->getPost());
+        $form->setInputFilter($todo->getInputFilter());
+        $form->setData($request->getPost());
 
-    //     if (! $form->isValid()) {
-    //         return $viewData;
-    //     }
+        if (! $form->isValid()) {
+            return $viewData;
+        }
 
-    //     try {
-    //         $this->table->saveTodo($todo);
-    //     } catch (\Exception $e) {
-    //     }
+        try {
+            $this->table->saveTodo($todo);
+        } catch (\Exception $e) {
+        }
 
-    //     // Redirect to album list
-    //     return $this->redirect()->toRoute('todo', ['action' => 'index']);
-    // }
+        // Redirect to album list
+        return $this->redirect()->toRoute('todo', ['action' => 'index']);
+    }
 }
  ?>
