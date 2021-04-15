@@ -120,45 +120,29 @@ class TodoController extends AbstractActionController
     public function doneAction()
     {
         $id = (int) $this->params()->fromRoute('id', 0);
-
-        if (0 === $id) {
-            return $this->redirect()->toRoute('todo', ['action' => 'add']);
+        if (!$id) {
+            return $this->redirect()->toRoute('todo');
         }
-
-        // Retrieve the album with the specified id. Doing so raises
-        // an exception if the album is not found, which should result
-        // in redirecting to the landing page.
-        try {
-            $todo = $this->table->getTodo($id);
-        } catch (\Exception $e) {
-            return $this->redirect()->toRoute('todo', ['action' => 'index']);
-        }
-
-        $form = new TodoForm();
-        $form->bind($todo);
-        $form->get('submit')->setAttribute('value', 'Done');
 
         $request = $this->getRequest();
-        $viewData = ['id' => $id, 'form' => $form];
+        if ($request->isPost()) {
+            $del = $request->getPost('stat', 'No');
 
-        if (! $request->isPost()) {
-            return $viewData;
+            if($del == 'Yes'){
+                $id = (int) $request->getPost('id');
+                $this->table->saveTodo($id);
+           } 
+        
+
+            // Redirect to list of ToDo
+            return $this->redirect()->toRoute('todo');
         }
 
-        $form->setInputFilter($todo->getInputFilter());
-        $form->setData($request->getPost());
-
-        if (! $form->isValid()) {
-            return $viewData;
-        }
-
-        try {
-            $this->table->saveTodo($todo);
-        } catch (\Exception $e) {
-        }
-
-        // Redirect to album list
-        return $this->redirect()->toRoute('todo', ['action' => 'index']);
+        return [
+            'id'    => $id,
+            'todo' => $this->table->getTodo($id),
+        ];
     }
+
 }
  ?>

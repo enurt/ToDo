@@ -1,6 +1,9 @@
 <?php 
 namespace Todo\Model;
 
+use Todo\Form\TodoForm;
+use Todo\Model\Todo;
+use Todo\Model\TodoTable;
 use RuntimeException;
 use Laminas\Db\TableGateway\TableGatewayInterface;
 
