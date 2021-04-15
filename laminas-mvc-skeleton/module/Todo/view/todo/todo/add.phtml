@@ -6,7 +6,7 @@ $this->headTitle($title);
 ?>
 <h1><?= $this->escapeHtml($title) ?></h1>
 <?php
-$todo = $form->get('To_Do_List', 'status');
+$todo = $form->get('To_Do_List');
 $todo->setAttribute('class', 'form-control');
 $todo->setAttribute('placeholder', 'To do list');
 
@@ -27,7 +27,7 @@ echo $this->form()->openTag($form);
 </div>
 <?php
 echo $this->formHidden($form->get('id'));
-// echo $this->formRow($form->get('status'));
+echo $this->formHidden($form->get('status'));
 //echo $this->formHidden($form->get('status'));
 //echo $this->formRow($form->get('To_Do_List'));
 echo $this->formSubmit($form->get('submit'));
