@@ -47,3 +47,4 @@ class Module implements ConfigProviderInterface
 }
 
  ?>
+ 

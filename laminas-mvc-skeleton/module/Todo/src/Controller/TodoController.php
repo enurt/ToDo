@@ -55,7 +55,7 @@ class TodoController extends AbstractActionController
             return $this->redirect()->toRoute('todo', ['action' => 'add']);
         }
 
-        // Retrieve the album with the specified id. Doing so raises
+        // Retrieve the Todo with the specified id. Doing so raises
         // an exception if the album is not found, which should result
         // in redirecting to the landing page.
         try {
@@ -87,7 +87,7 @@ class TodoController extends AbstractActionController
         } catch (\Exception $e) {
         }
 
-        // Redirect to album list
+        // Redirect to todo list
         return $this->redirect()->toRoute('todo', ['action' => 'index']);
     }
 
@@ -107,7 +107,7 @@ class TodoController extends AbstractActionController
                 $this->table->deleteTodo($id);
             }
 
-            // Redirect to list of albums
+            // Redirect to list of todo
             return $this->redirect()->toRoute('todo');
         }
 
