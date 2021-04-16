@@ -119,23 +119,27 @@ class TodoController extends AbstractActionController
 
     public function doneAction()
     {
+
         $id = (int) $this->params()->fromRoute('id', 0);
         if (!$id) {
-            return $this->redirect()->toRoute('todo');
+            return $this->redirect()->toRoute('todo', ['action' => 'index']);
         }
 
         $request = $this->getRequest();
         if ($request->isPost()) {
-            $del = $request->getPost('stat', 'No');
+            $viewData = $request->getPost('stat', 'No');
 
-            if($del == 'Yes'){
-                $id = (int) $request->getPost('id');
-                $this->table->saveTodo($id);
+            if($viewData == 'Yes'){
+
+                $statuss = $request->getPost('status');
+                $todo = $this->table->getTodo($id);
+                $todo->status = $statuss;
+                $this->table->saveTodo($todo);
            } 
         
 
             // Redirect to list of ToDo
-            return $this->redirect()->toRoute('todo');
+            return $this->redirect()->toRoute('todo', ['action' => 'index']);
         }
 
         return [
