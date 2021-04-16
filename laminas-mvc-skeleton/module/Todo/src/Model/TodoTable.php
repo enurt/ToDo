@@ -1,6 +1,9 @@
 <?php 
 namespace Todo\Model;
 
+use Todo\Form\TodoForm;
+use Todo\Model\Todo;
+use Todo\Model\TodoTable;
 use RuntimeException;
 use Laminas\Db\TableGateway\TableGatewayInterface;
 
@@ -35,9 +38,11 @@ class TodoTable
 
     public function saveTodo(Todo $To_Do_List)
     {
+
+
         $data = [
             'To_Do_List' => $To_Do_List->To_Do_List,
-           
+            'status' => $To_Do_List->status,
         ];
 
         $id = (int) $To_Do_List->id;
@@ -59,9 +64,11 @@ class TodoTable
         $this->tableGateway->update($data, ['id' => $id]);
     }
 
+
     public function deleteTodo($id)
     {
         $this->tableGateway->delete(['id' => (int) $id]);
     }
 }
- ?>
+
+?>

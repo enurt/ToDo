@@ -45,4 +45,6 @@ class Module implements ConfigProviderInterface
         ];
     }
 }
+
  ?>
+ 

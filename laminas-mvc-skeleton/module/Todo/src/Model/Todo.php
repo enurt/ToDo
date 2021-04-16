@@ -14,6 +14,7 @@ class Todo implements InputFilterAwareInterface
 {
     public $id;
     public $To_Do_List;
+    public $status;
     
     private $inputFilter;
 
@@ -21,6 +22,7 @@ class Todo implements InputFilterAwareInterface
     {
         $this->id = !empty($data['id']) ? $data['id'] : null;
         $this->To_Do_List = !empty($data['To_Do_List']) ? $data['To_Do_List'] : null;
+        $this->status = !empty($data['status']) ? $data['status'] : null;
     }
 
     public function getArrayCopy()
@@ -28,6 +30,7 @@ class Todo implements InputFilterAwareInterface
         return [
             'id'     => $this->id,
             'To_Do_List' => $this->To_Do_List,
+            'status' => $this->status,
             
         ];
     }
@@ -58,7 +61,7 @@ class Todo implements InputFilterAwareInterface
 
         $inputFilter->add([
             'name' => 'To_Do_List',
-            'required' => true,
+            'required' => false,
             'filters' => [
                 ['name' => StripTags::class],
                 ['name' => StringTrim::class],
@@ -75,24 +78,25 @@ class Todo implements InputFilterAwareInterface
             ],
         ]);
 
-        // $inputFilter->add([
-        //     'name' => 'title',
-        //     'required' => true,
-        //     'filters' => [
-        //         ['name' => StripTags::class],
-        //         ['name' => StringTrim::class],
-        //     ],
-        //     'validators' => [
-        //         [
-        //             'name' => StringLength::class,
-        //             'options' => [
-        //                 'encoding' => 'UTF-8',
-        //                 'min' => 1,
-        //                 'max' => 100,
-        //             ],
-        //         ],
-        //     ],
-        // ]);
+        $inputFilter->add([
+            'name' => 'status',
+            'required' => false,
+            'filters' => [
+                ['name' => StripTags::class],
+                ['name' => StringTrim::class],
+            ],
+            'validators' => [
+                [
+                    'name' => StringLength::class,
+                    'options' => [
+                        'encoding' => 'UTF-8',
+                        'min' => 1,
+                        'max' => 100,
+                    ],
+                ],
+            ],
+        ]);
+
 
         $this->inputFilter = $inputFilter;
         return $this->inputFilter;
@@ -100,3 +104,4 @@ class Todo implements InputFilterAwareInterface
 }
 
  ?>
+ 

@@ -1,0 +1,23 @@
+<?php
+// module/Album/view/album/album/delete.phtml:
+
+$title = 'Mark this task as done';
+$url   = $this->url('todo', ['action' => 'done', 'id' => $id]);
+
+$this->headTitle($title);
+?>
+<h2><?= $this->escapeHtml($title) ?></h2>
+
+<p>
+    Are you sure that you want to mark this task
+    "<?= $this->escapeHtml($todo->To_Do_List) ?>" as Done?
+</p>
+
+<form action="<?= $url ?>" method="post">
+<div class="form-group">
+    <input type="hidden" name="status" value="Done" />
+    <input type="submit" class="btn btn-primary" name="stat" value="Yes" />
+</div>
+</form>
+
+<?php

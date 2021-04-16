@@ -27,7 +27,8 @@ echo $this->form()->openTag($form);
 </div>
 <?php
 echo $this->formHidden($form->get('id'));
-//echo $this->formRow($form->get('To_Do_List'));
+echo $this->formHidden($form->get('status'));
 echo $this->formSubmit($form->get('submit'));
 echo $this->form()->closeTag();
+
 ?>

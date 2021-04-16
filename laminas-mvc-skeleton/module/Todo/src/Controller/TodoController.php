@@ -49,13 +49,13 @@ class TodoController extends AbstractActionController
 
     public function updateAction()
     {
-         $id = (int) $this->params()->fromRoute('id', 0);
+        $id = (int) $this->params()->fromRoute('id', 0);
 
         if (0 === $id) {
             return $this->redirect()->toRoute('todo', ['action' => 'add']);
         }
 
-        // Retrieve the album with the specified id. Doing so raises
+        // Retrieve the Todo with the specified id. Doing so raises
         // an exception if the album is not found, which should result
         // in redirecting to the landing page.
         try {
@@ -87,7 +87,7 @@ class TodoController extends AbstractActionController
         } catch (\Exception $e) {
         }
 
-        // Redirect to album list
+        // Redirect to todo list
         return $this->redirect()->toRoute('todo', ['action' => 'index']);
     }
 
@@ -107,7 +107,7 @@ class TodoController extends AbstractActionController
                 $this->table->deleteTodo($id);
             }
 
-            // Redirect to list of albums
+            // Redirect to list of todo
             return $this->redirect()->toRoute('todo');
         }
 
@@ -116,5 +116,38 @@ class TodoController extends AbstractActionController
             'todo' => $this->table->getTodo($id),
         ];
     }
+
+    public function doneAction()
+    {
+
+        $id = (int) $this->params()->fromRoute('id', 0);
+        if (!$id) {
+            return $this->redirect()->toRoute('todo', ['action' => 'index']);
+        }
+
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $viewData = $request->getPost('stat', 'No');
+
+            if($viewData == 'Yes'){
+
+                $statuss = $request->getPost('status');
+                $todo = $this->table->getTodo($id);
+                $todo->status = $statuss;
+                $this->table->saveTodo($todo);
+           } 
+        
+
+            // Redirect to list of ToDo
+            return $this->redirect()->toRoute('todo', ['action' => 'index']);
+        }
+
+        return [
+            'id'    => $id,
+            'todo' => $this->table->getTodo($id),
+        ];
+    }
+
 }
- ?>
+
+?>

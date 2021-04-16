@@ -2,15 +2,8 @@
 namespace Todo;
 
 use Laminas\Router\Http\Segment;
-// use Laminas\ServiceManager\Factory\InvokableFactory;
 
 return [
-
-  // 'controllers' => [
-    //    'factories' => [
-     //       Controller\TodoController::class => InvokableFactory::class,
-     //   ],
-   // ],    
 
       'router' => [
         'routes' => [
@@ -37,4 +30,5 @@ return [
         ],
     ],
 ];
+
 ?>
