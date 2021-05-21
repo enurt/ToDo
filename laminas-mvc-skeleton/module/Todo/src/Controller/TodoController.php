@@ -51,8 +51,11 @@ class TodoController extends AbstractActionController
     {
         $id = (int) $this->params()->fromRoute('id', 0);
 
+
         if (0 === $id) {
+
             return $this->redirect()->toRoute('todo', ['action' => 'add']);
+
         }
 
         // Retrieve the Todo with the specified id. Doing so raises

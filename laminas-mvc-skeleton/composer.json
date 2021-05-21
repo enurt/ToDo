@@ -26,7 +26,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "ApplicationTest\\": "module/Application/test/"
+            "ApplicationTest\\": "module/Application/test/",
+            "TodoTest\\": "module/Todo/test/"
         }
     },
     "scripts": {
@@ -41,7 +42,7 @@
             "php -r 'if (file_exists(\"bin/remove-package-artifacts.php\")) include \"bin/remove-package-artifacts.php\";'",
             "php -r 'if (file_exists(\"CHANGELOG.md\")) unlink(\"CHANGELOG.md\");'"
         ],
-        "serve": "php -S 0.0.0.0:8080 -t public",
+        "serve": "php -S 0.0.0.0:4200 -t public",
         "test": "phpunit"
     },
     "scripts-descriptions": {
@@ -52,5 +53,9 @@
         "development-status": "Detail whether or not the application is in development mode.",
         "serve": "Start the built-in PHP web server and serve the application.",
         "test": "Run unit tests."
+    },
+    "require-dev": {
+        "laminas/laminas-test": "^3.4",
+        "phpunit/phpunit": "^9.5"
     }
 }
