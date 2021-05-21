@@ -85,9 +85,6 @@ class TodoControllerTest extends AbstractHttpControllerTestCase
             'To_Do_List' => 'test',
             'status'  => 'new'
         ];
-        //$todo->exchangeArray($updateData);
-        
-        // $this->todoTable->getTodo(['id' => 5 ])->willReturn(new Todo());
 
         $this->dispatch('/todo/update/5', 'POST', $updateData);
         $this->assertResponseStatusCode(302);
@@ -103,7 +100,6 @@ class TodoControllerTest extends AbstractHttpControllerTestCase
             'To_Do_List' => 'test',
             'status'  => 'new'
         ];
-        //$todo->exchangeArray($deleteData);
         
         $this->todoTable->deleteTodo(['id' => 5 ])->willReturn($todo);
 
